@@ -1,7 +1,8 @@
 # Description:
 # Uploader for TensorBoard.dev
 
-package(default_visibility = ["//tensorboard:internal"])
+DEFAULT_VISIBILITY = ["//tensorboard:internal"]
+package(default_visibility = DEFAULT_VISIBILITY)
 
 licenses(["notice"])  # Apache 2.0
 
@@ -206,6 +207,9 @@ py_test(
 py_library(
     name = "logdir_loader",
     srcs = ["logdir_loader.py"],
+    visibility = DEFAULT_VISIBILITY + [
+        "//tensorboard/uploader/external_users:whitelist",
+        ],
     deps = [
         "//tensorboard/backend/event_processing:directory_watcher",
         "//tensorboard/backend/event_processing:io_wrapper",
